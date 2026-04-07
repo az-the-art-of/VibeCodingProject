@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Running club</title>
+  <desc id="desc">Illustrated running club banner.</desc>
+  <rect width="800" height="500" fill="#d8ebe6"/>
+  <circle cx="680" cy="120" r="54" fill="#f7c26c"/>
+  <path d="M90 420c90-130 200-180 330-150s220 24 290-40v170H90z" fill="#7bb39f"/>
+  <path d="M170 350c34-88 86-134 156-140 39-4 78 10 118 40l-44 38c-23-15-44-21-65-19-32 3-58 26-80 71z" fill="#1f4741"/>
+  <text x="80" y="96" font-family="Georgia, serif" font-size="42" fill="#1f4741">Running Club</text>
+</svg>

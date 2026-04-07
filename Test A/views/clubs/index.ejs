@@ -1,0 +1,60 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/header") %>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Club search</p>
+      <h1>Browse local clubs and community groups</h1>
+      <p class="hero-copy">Use the filters below to refine the list by interest, location, age group, cost, and setting.</p>
+      <%- include("../partials/search-form", { action: "/clubs", filters, filterOptions }) %>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-header">
+      <div>
+        <p class="eyebrow">Results</p>
+        <h2><%= clubs.length %> club<%= clubs.length === 1 ? '' : 's' %> found</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <% if (clubs.length) { %>
+        <div class="card-grid">
+          <% clubs.forEach((club) => { %>
+            <article class="club-card">
+              <img src="<%= club.image_url %>" alt="<%= club.name %>" class="club-card-image" />
+              <div class="club-card-body">
+                <div class="badge-row">
+                  <span class="badge"><%= club.category %></span>
+                  <span class="badge"><%= club.setting_type %></span>
+                  <span class="badge"><%= club.cost_type %></span>
+                </div>
+                <h3><%= club.name %></h3>
+                <p><%= club.description %></p>
+                <ul class="meta-list">
+                  <li><strong>Activity:</strong> <%= club.activity_type %></li>
+                  <li><strong>Location:</strong> <%= club.location %></li>
+                  <li><strong>Meets:</strong> <%= club.meeting_time %></li>
+                  <li><strong>Reviews:</strong> <%= club.review_count ? `${club.average_rating}/5 from ${club.review_count}` : 'No reviews yet' %></li>
+                </ul>
+                <% if (currentUser && favouriteIds.includes(club.id)) { %>
+                  <p class="saved-label">Saved to your favourites</p>
+                <% } %>
+                <a href="/clubs/<%= club.id %>" class="button">Open club</a>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="empty-state">
+          <h3>No clubs match those filters.</h3>
+          <p>Try widening the location or removing one or two filters to see more results.</p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>

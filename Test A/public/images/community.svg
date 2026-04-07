@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Community club</title>
+  <desc id="desc">Illustrated community club banner.</desc>
+  <rect width="800" height="500" fill="#f2e8dc"/>
+  <circle cx="250" cy="220" r="54" fill="#295c55"/>
+  <circle cx="400" cy="180" r="54" fill="#c57f39"/>
+  <circle cx="550" cy="220" r="54" fill="#9a3e2f"/>
+  <path d="M170 390c10-68 50-108 120-108s110 40 120 108h-80c-8-24-22-36-40-36s-32 12-40 36z" fill="#295c55"/>
+  <path d="M320 390c10-68 50-108 120-108s110 40 120 108h-80c-8-24-22-36-40-36s-32 12-40 36z" fill="#c57f39"/>
+  <text x="80" y="96" font-family="Georgia, serif" font-size="42" fill="#584938">Community Club</text>
+</svg>

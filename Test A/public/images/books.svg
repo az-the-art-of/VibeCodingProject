@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Book club</title>
+  <desc id="desc">Illustrated book club banner.</desc>
+  <rect width="800" height="500" fill="#f1e6d2"/>
+  <rect x="120" y="170" width="120" height="210" rx="14" fill="#9a3e2f"/>
+  <rect x="250" y="150" width="120" height="230" rx="14" fill="#295c55"/>
+  <rect x="380" y="180" width="120" height="200" rx="14" fill="#c57f39"/>
+  <rect x="510" y="140" width="120" height="240" rx="14" fill="#584938"/>
+  <text x="80" y="102" font-family="Georgia, serif" font-size="42" fill="#584938">Book Circle</text>
+</svg>

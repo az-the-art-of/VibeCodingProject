@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Outdoor club</title>
+  <desc id="desc">Illustrated walkers banner.</desc>
+  <rect width="800" height="500" fill="#e2efe1"/>
+  <circle cx="650" cy="110" r="50" fill="#f7c26c"/>
+  <path d="M80 380l140-180 120 120 120-170 170 230H80z" fill="#56896f"/>
+  <path d="M220 380l120-120 110 120H220z" fill="#295c55"/>
+  <text x="80" y="96" font-family="Georgia, serif" font-size="42" fill="#1f4741">Walking Group</text>
+</svg>

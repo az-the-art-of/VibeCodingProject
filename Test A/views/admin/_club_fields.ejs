@@ -1,0 +1,89 @@
+<label>
+  <span>Club name</span>
+  <input type="text" name="name" value="<%= values.name %>" required />
+</label>
+
+<label>
+  <span>Activity type</span>
+  <input type="text" name="activity_type" value="<%= values.activity_type %>" required />
+</label>
+
+<label>
+  <span>Category</span>
+  <select name="category" required>
+    <option value="">Select category</option>
+    <% clubFieldOptions.categories.forEach((category) => { %>
+      <option value="<%= category %>" <%= values.category === category ? 'selected' : '' %>><%= category %></option>
+    <% }) %>
+  </select>
+</label>
+
+<label>
+  <span>Location</span>
+  <input type="text" name="location" value="<%= values.location %>" required />
+</label>
+
+<label>
+  <span>Age group</span>
+  <select name="age_group" required>
+    <option value="">Select age group</option>
+    <% clubFieldOptions.ageGroups.forEach((ageGroup) => { %>
+      <option value="<%= ageGroup %>" <%= values.age_group === ageGroup ? 'selected' : '' %>><%= ageGroup %></option>
+    <% }) %>
+  </select>
+</label>
+
+<label>
+  <span>Free or paid</span>
+  <select name="cost_type" required>
+    <option value="">Select cost</option>
+    <% clubFieldOptions.costTypes.forEach((costType) => { %>
+      <option value="<%= costType %>" <%= values.cost_type === costType ? 'selected' : '' %>><%= costType %></option>
+    <% }) %>
+  </select>
+</label>
+
+<label>
+  <span>Indoor / outdoor</span>
+  <select name="setting_type" required>
+    <option value="">Select setting</option>
+    <% clubFieldOptions.settingTypes.forEach((settingType) => { %>
+      <option value="<%= settingType %>" <%= values.setting_type === settingType ? 'selected' : '' %>><%= settingType %></option>
+    <% }) %>
+  </select>
+</label>
+
+<label>
+  <span>Meeting frequency</span>
+  <select name="meeting_frequency" required>
+    <option value="">Select frequency</option>
+    <% clubFieldOptions.meetingFrequencies.forEach((meetingFrequency) => { %>
+      <option value="<%= meetingFrequency %>" <%= values.meeting_frequency === meetingFrequency ? 'selected' : '' %>><%= meetingFrequency %></option>
+    <% }) %>
+  </select>
+</label>
+
+<label class="full-width">
+  <span>Description</span>
+  <textarea name="description" rows="4" required><%= values.description %></textarea>
+</label>
+
+<label class="full-width">
+  <span>Address</span>
+  <input type="text" name="address" value="<%= values.address %>" required />
+</label>
+
+<label>
+  <span>Meeting time</span>
+  <input type="text" name="meeting_time" value="<%= values.meeting_time %>" required />
+</label>
+
+<label>
+  <span>Contact email</span>
+  <input type="email" name="contact_email" value="<%= values.contact_email %>" required />
+</label>
+
+<label class="full-width">
+  <span>Image URL</span>
+  <input type="text" name="image_url" value="<%= values.image_url %>" required />
+</label>

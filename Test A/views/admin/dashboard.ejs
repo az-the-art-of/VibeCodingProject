@@ -1,0 +1,129 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/header") %>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Administration</p>
+      <h1>Admin dashboard</h1>
+      <p class="hero-copy">Create new club listings, manage existing clubs, and review incoming contact submissions.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stat-grid">
+      <article class="stat-card">
+        <strong><%= totals.clubCount %></strong>
+        <span>Clubs</span>
+      </article>
+      <article class="stat-card">
+        <strong><%= totals.contactCount %></strong>
+        <span>Contact submissions</span>
+      </article>
+      <article class="stat-card">
+        <strong><%= totals.userCount %></strong>
+        <span>Registered users</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Create listing</p>
+          <h2>Add a new club</h2>
+        </div>
+      </div>
+
+      <article class="panel">
+        <% if (formErrors.length) { %>
+          <div class="error-list">
+            <% formErrors.forEach((error) => { %>
+              <p><%= error %></p>
+            <% }) %>
+          </div>
+        <% } %>
+
+        <form action="/admin/clubs" method="POST" class="form-grid">
+          <%- include("_club_fields", { values: formValues, clubFieldOptions }) %>
+          <div class="full-width">
+            <button type="submit" class="button">Create club</button>
+          </div>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-header">
+      <div>
+        <p class="eyebrow">Manage listings</p>
+        <h2>Current clubs</h2>
+      </div>
+    </div>
+
+    <div class="container table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Meeting time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% clubs.forEach((club) => { %>
+            <tr>
+              <td><a href="/clubs/<%= club.id %>"><%= club.name %></a></td>
+              <td><%= club.location %></td>
+              <td><%= club.category %></td>
+              <td><%= club.meeting_time %></td>
+              <td class="table-actions">
+                <a href="/admin/clubs/<%= club.id %>/edit" class="button button-secondary">Edit</a>
+                <form action="/admin/clubs/<%= club.id %>/delete" method="POST">
+                  <button type="submit" class="button button-danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container section-header">
+      <div>
+        <p class="eyebrow">Contact submissions</p>
+        <h2>Requests sent by users</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <% if (contactRequests.length) { %>
+        <div class="review-list">
+          <% contactRequests.forEach((request) => { %>
+            <article class="review-card">
+              <div class="review-header">
+                <strong><%= request.requester_name %></strong>
+                <span><%= formatDate(request.created_at) %></span>
+              </div>
+              <p><strong>Club:</strong> <%= request.club_name %></p>
+              <p><strong>Email:</strong> <%= request.requester_email %></p>
+              <p><%= request.message %></p>
+            </article>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="empty-state">
+          <p>No contact requests have been submitted yet.</p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>

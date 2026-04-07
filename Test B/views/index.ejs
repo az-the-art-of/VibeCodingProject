@@ -1,0 +1,89 @@
+<%- include("partials/head", { title: "Home" }) %>
+<%- include("partials/header") %>
+
+<section class="hero-panel">
+  <div>
+    <p class="eyebrow">Find people nearby</p>
+    <h1>Discover local clubs, hobby groups, and community meetups.</h1>
+    <p class="hero-copy">
+      Search by club name, activity, or area, then narrow the list with filters for age group,
+      indoor or outdoor venues, cost, and frequency.
+    </p>
+  </div>
+
+  <form class="hero-search" action="/clubs" method="get">
+    <label>
+      Club name
+      <input type="text" name="q" value="<%= filters.q %>" placeholder="e.g. choir, coding, running" />
+    </label>
+    <label>
+      Activity type
+      <input type="text" name="activity_type" value="<%= filters.activity_type %>" placeholder="e.g. football, gardening" />
+    </label>
+    <label>
+      Location
+      <input type="text" name="location" value="<%= filters.location %>" placeholder="e.g. Galway, Bray" />
+    </label>
+    <button type="submit">Search clubs</button>
+  </form>
+</section>
+
+<% if (currentUser && favouriteClubs.length) { %>
+  <section class="content-section">
+    <div class="section-heading">
+      <h2>Your favourites</h2>
+      <p>Quick links to clubs you have saved.</p>
+    </div>
+
+    <div class="compact-list">
+      <% favouriteClubs.forEach((club) => { %>
+        <a class="compact-card" href="/clubs/<%= club.id %>">
+          <strong><%= club.name %></strong>
+          <span><%= club.location %> • <%= club.category %></span>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<section class="content-section">
+  <div class="section-heading">
+    <h2>Featured clubs</h2>
+    <p>Seeded examples you can inspect immediately after running the app.</p>
+  </div>
+
+  <% if (!featuredClubs.length) { %>
+    <div class="empty-state">
+      <p>No clubs are available yet. Run the seed script to load example data.</p>
+    </div>
+  <% } else { %>
+    <div class="card-grid">
+      <% featuredClubs.forEach((club) => { %>
+        <article class="club-card">
+          <img src="<%= club.image_url %>" alt="<%= club.name %>" />
+          <div class="club-card-body">
+            <div class="club-card-top">
+              <p class="club-meta"><%= club.category %> • <%= club.location %></p>
+              <h3><a href="/clubs/<%= club.id %>"><%= club.name %></a></h3>
+            </div>
+            <p><%= club.description.length > 150 ? `${club.description.slice(0, 150)}...` : club.description %></p>
+            <div class="tag-row">
+              <span class="tag"><%= club.activity_type %></span>
+              <span class="tag"><%= club.cost_type %></span>
+              <span class="tag"><%= club.meeting_frequency %></span>
+            </div>
+            <p class="rating-line">
+              <% if (club.average_rating) { %>
+                <strong><%= club.average_rating %>/5</strong> from <%= club.review_count %> review(s)
+              <% } else { %>
+                No reviews yet
+              <% } %>
+            </p>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include("partials/footer") %>

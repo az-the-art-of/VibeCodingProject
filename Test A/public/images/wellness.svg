@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Yoga club</title>
+  <desc id="desc">Illustrated yoga group banner.</desc>
+  <rect width="800" height="500" fill="#e8f0de"/>
+  <circle cx="400" cy="165" r="52" fill="#295c55"/>
+  <path d="M250 390c20-88 68-138 150-138s130 50 150 138h-68c-16-48-43-72-82-72s-66 24-82 72z" fill="#295c55"/>
+  <path d="M182 286c54 0 96 27 126 84l-62 27c-19-35-41-53-64-53-19 0-36 11-51 33l-48-32c25-39 58-59 99-59z" fill="#7bb39f"/>
+  <path d="M618 286c41 0 74 20 99 59l-48 32c-15-22-32-33-51-33-23 0-45 18-64 53l-62-27c30-57 72-84 126-84z" fill="#7bb39f"/>
+  <text x="80" y="96" font-family="Georgia, serif" font-size="42" fill="#1f4741">Yoga Collective</text>
+</svg>

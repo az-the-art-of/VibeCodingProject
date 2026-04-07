@@ -1,0 +1,112 @@
+<%- include("../partials/head", { title: pageTitle }) %>
+<%- include("../partials/header") %>
+
+<section class="section-heading">
+  <div>
+    <p class="eyebrow">Admin</p>
+    <h1><%= pageTitle %></h1>
+    <p>All fields are validated on the server before data is written to SQLite.</p>
+  </div>
+</section>
+
+<section class="panel narrow-panel">
+  <% if (errors.length) { %>
+    <div class="form-errors">
+      <% errors.forEach((error) => { %>
+        <p><%= error %></p>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <form class="stack-form" action="<%= formAction %>" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+    <label>
+      Club name
+      <input type="text" name="name" value="<%= club.name %>" required />
+    </label>
+
+    <label>
+      Category
+      <input type="text" name="category" value="<%= club.category %>" required />
+    </label>
+
+    <label>
+      Activity type
+      <input type="text" name="activity_type" value="<%= club.activity_type %>" required />
+    </label>
+
+    <label>
+      Location
+      <input type="text" name="location" value="<%= club.location %>" required />
+    </label>
+
+    <label>
+      Age group
+      <select name="age_group">
+        <% ["All Ages", "Adults", "Families", "Seniors", "Teens"].forEach((option) => { %>
+          <option value="<%= option %>" <%= club.age_group === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      Cost type
+      <select name="cost_type">
+        <% ["Free", "Paid"].forEach((option) => { %>
+          <option value="<%= option %>" <%= club.cost_type === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      Venue type
+      <select name="venue_type">
+        <% ["Indoor", "Outdoor", "Mixed"].forEach((option) => { %>
+          <option value="<%= option %>" <%= club.venue_type === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      Meeting frequency
+      <select name="meeting_frequency">
+        <% ["Weekly", "Fortnightly", "Monthly"].forEach((option) => { %>
+          <option value="<%= option %>" <%= club.meeting_frequency === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      Address
+      <input type="text" name="address" value="<%= club.address %>" required />
+    </label>
+
+    <label>
+      Meeting time
+      <input type="text" name="meeting_time" value="<%= club.meeting_time %>" required />
+    </label>
+
+    <label>
+      Contact email
+      <input type="email" name="contact_email" value="<%= club.contact_email %>" required />
+    </label>
+
+    <label>
+      Image URL
+      <input type="url" name="image_url" value="<%= club.image_url %>" required />
+    </label>
+
+    <label>
+      Description
+      <textarea name="description" rows="7" required><%= club.description %></textarea>
+    </label>
+
+    <div class="button-row">
+      <button type="submit"><%= submitLabel %></button>
+      <a class="secondary-link" href="/dashboard">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include("../partials/footer") %>

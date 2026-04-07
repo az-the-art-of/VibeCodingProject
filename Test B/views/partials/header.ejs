@@ -1,0 +1,30 @@
+<header class="site-header">
+  <div class="container nav-row">
+    <a class="brand" href="/">Local Social Clubs Finder</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/clubs">Browse Clubs</a>
+      <% if (currentUser && currentUser.role === "admin") { %>
+        <a href="/dashboard">Admin Dashboard</a>
+      <% } %>
+
+      <% if (currentUser) { %>
+        <span class="nav-user">Signed in as <strong><%= currentUser.name %></strong></span>
+        <form class="inline-form" action="/logout" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="link-button" type="submit">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/auth">Login / Register</a>
+      <% } %>
+    </nav>
+  </div>
+
+  <% if (flash) { %>
+    <div class="container">
+      <div class="flash flash-<%= flash.type %>"><%= flash.message %></div>
+    </div>
+  <% } %>
+</header>
+
+<main class="container page-content">

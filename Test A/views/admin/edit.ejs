@@ -1,0 +1,37 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/header") %>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <a href="/admin" class="back-link">Back to dashboard</a>
+      <p class="eyebrow">Edit listing</p>
+      <h1>Edit <%= club.name %></h1>
+      <p class="hero-copy">Update the club details below and save the changes.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel">
+        <% if (formErrors.length) { %>
+          <div class="error-list">
+            <% formErrors.forEach((error) => { %>
+              <p><%= error %></p>
+            <% }) %>
+          </div>
+        <% } %>
+
+        <form action="/admin/clubs/<%= club.id %>" method="POST" class="form-grid">
+          <%- include("_club_fields", { values: club, clubFieldOptions }) %>
+          <div class="full-width action-row">
+            <button type="submit" class="button">Save changes</button>
+            <a href="/clubs/<%= club.id %>" class="button button-secondary">View public page</a>
+          </div>
+        </form>
+      </article>
+    </div>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>

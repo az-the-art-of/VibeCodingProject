@@ -1,0 +1,143 @@
+<%- include("partials/head", { title: "Club Search" }) %>
+<%- include("partials/header") %>
+
+<section class="section-heading results-heading">
+  <div>
+    <p class="eyebrow">Search results</p>
+    <h1>Browse local social clubs</h1>
+    <p><%= clubs.length %> club(s) matched your current search.</p>
+  </div>
+</section>
+
+<section class="results-layout">
+  <aside class="filter-panel">
+    <h2>Filters</h2>
+    <form action="/clubs" method="get" class="stack-form">
+      <label>
+        Club name
+        <input type="text" name="q" value="<%= filters.q %>" />
+      </label>
+
+      <label>
+        Activity type
+        <input type="text" name="activity_type" value="<%= filters.activity_type %>" />
+      </label>
+
+      <label>
+        Location
+        <input type="text" name="location" value="<%= filters.location %>" />
+      </label>
+
+      <label>
+        Category
+        <select name="category">
+          <option value="">Any category</option>
+          <% filterOptions.categories.forEach((option) => { %>
+            <option value="<%= option %>" <%= filters.category === option ? "selected" : "" %>><%= option %></option>
+          <% }) %>
+        </select>
+      </label>
+
+      <label>
+        Age group
+        <select name="age_group">
+          <option value="">Any age group</option>
+          <% filterOptions.ageGroups.forEach((option) => { %>
+            <option value="<%= option %>" <%= filters.age_group === option ? "selected" : "" %>><%= option %></option>
+          <% }) %>
+        </select>
+      </label>
+
+      <label>
+        Free or paid
+        <select name="cost_type">
+          <option value="">Any cost</option>
+          <% filterOptions.costTypes.forEach((option) => { %>
+            <option value="<%= option %>" <%= filters.cost_type === option ? "selected" : "" %>><%= option %></option>
+          <% }) %>
+        </select>
+      </label>
+
+      <label>
+        Venue type
+        <select name="venue_type">
+          <option value="">Any venue</option>
+          <% filterOptions.venueTypes.forEach((option) => { %>
+            <option value="<%= option %>" <%= filters.venue_type === option ? "selected" : "" %>><%= option %></option>
+          <% }) %>
+        </select>
+      </label>
+
+      <label>
+        Meeting frequency
+        <select name="meeting_frequency">
+          <option value="">Any frequency</option>
+          <% filterOptions.meetingFrequencies.forEach((option) => { %>
+            <option value="<%= option %>" <%= filters.meeting_frequency === option ? "selected" : "" %>><%= option %></option>
+          <% }) %>
+        </select>
+      </label>
+
+      <div class="button-row">
+        <button type="submit">Apply filters</button>
+        <a class="secondary-link" href="/clubs">Reset</a>
+      </div>
+    </form>
+  </aside>
+
+  <div class="results-grid">
+    <% if (!clubs.length) { %>
+      <div class="empty-state">
+        <h2>No clubs matched</h2>
+        <p>Try broadening your search or clearing some filters.</p>
+      </div>
+    <% } %>
+
+    <% clubs.forEach((club) => { %>
+      <article class="club-card">
+        <img src="<%= club.image_url %>" alt="<%= club.name %>" />
+        <div class="club-card-body">
+          <div class="club-card-top">
+            <p class="club-meta"><%= club.location %> • <%= club.category %></p>
+            <h2><a href="/clubs/<%= club.id %>"><%= club.name %></a></h2>
+          </div>
+          <p><%= club.description.length > 170 ? `${club.description.slice(0, 170)}...` : club.description %></p>
+          <div class="tag-row">
+            <span class="tag"><%= club.activity_type %></span>
+            <span class="tag"><%= club.age_group %></span>
+            <span class="tag"><%= club.cost_type %></span>
+            <span class="tag"><%= club.venue_type %></span>
+            <span class="tag"><%= club.meeting_frequency %></span>
+          </div>
+          <p class="rating-line">
+            <% if (club.average_rating) { %>
+              <strong><%= club.average_rating %>/5</strong> from <%= club.review_count %> review(s)
+            <% } else { %>
+              No reviews yet
+            <% } %>
+          </p>
+          <div class="button-row">
+            <a class="secondary-link" href="/clubs/<%= club.id %>">View details</a>
+            <% if (currentUser) { %>
+              <% if (favouriteClubIds.includes(club.id)) { %>
+                <form class="inline-form" action="/clubs/<%= club.id %>/unfavourite" method="post">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  <input type="hidden" name="returnTo" value="<%= currentPath %>" />
+                  <button type="submit" class="ghost-button">Remove favourite</button>
+                </form>
+              <% } else { %>
+                <form class="inline-form" action="/clubs/<%= club.id %>/favourite" method="post">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  <input type="hidden" name="returnTo" value="<%= currentPath %>" />
+                  <button type="submit" class="ghost-button">Save favourite</button>
+                </form>
+              <% } %>
+            <% } %>
+          </div>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<%- include("partials/footer") %>

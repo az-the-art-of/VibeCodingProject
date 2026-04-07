@@ -1,0 +1,57 @@
+<%- include("partials/head", { title }) %>
+<%- include("partials/header") %>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Account access</p>
+      <h1>Login or create an account</h1>
+      <p class="hero-copy">Accounts unlock favourites, club contact requests, and reviews.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container auth-grid">
+      <article class="panel">
+        <h2>Login</h2>
+        <form action="/login" method="POST" class="stack-form">
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" required />
+          </label>
+
+          <button type="submit" class="button">Login</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <h2>Register</h2>
+        <form action="/register" method="POST" class="stack-form">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" minlength="6" required />
+          </label>
+
+          <button type="submit" class="button">Create account</button>
+        </form>
+      </article>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

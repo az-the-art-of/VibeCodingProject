@@ -1,0 +1,152 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/header") %>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <a href="<%= backLink %>" class="back-link">Back</a>
+
+      <div class="detail-hero">
+        <img src="<%= club.image_url %>" alt="<%= club.name %>" class="detail-image" />
+
+        <div>
+          <div class="badge-row">
+            <span class="badge"><%= club.category %></span>
+            <span class="badge"><%= club.activity_type %></span>
+            <span class="badge"><%= club.location %></span>
+          </div>
+
+          <h1><%= club.name %></h1>
+          <p class="hero-copy"><%= club.description %></p>
+
+          <div class="detail-metrics">
+            <div class="metric-card">
+              <strong><%= club.review_count ? `${club.average_rating}/5` : 'No rating yet' %></strong>
+              <span><%= club.review_count ? `${club.review_count} review(s)` : 'Be the first to review' %></span>
+            </div>
+            <div class="metric-card">
+              <strong><%= club.cost_type %></strong>
+              <span>Cost</span>
+            </div>
+            <div class="metric-card">
+              <strong><%= club.setting_type %></strong>
+              <span>Setting</span>
+            </div>
+            <div class="metric-card">
+              <strong><%= club.meeting_frequency %></strong>
+              <span>Frequency</span>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <% if (currentUser) { %>
+              <% if (isFavourite) { %>
+                <form action="/clubs/<%= club.id %>/unfavourite" method="POST">
+                  <button type="submit" class="button button-secondary">Remove favourite</button>
+                </form>
+              <% } else { %>
+                <form action="/clubs/<%= club.id %>/favourite" method="POST">
+                  <button type="submit" class="button">Save favourite</button>
+                </form>
+              <% } %>
+            <% } else { %>
+              <a href="/auth" class="button">Login to save favourites</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-grid">
+      <article class="panel">
+        <h2>Club information</h2>
+        <ul class="meta-list">
+          <li><strong>Location:</strong> <%= club.location %></li>
+          <li><strong>Address:</strong> <%= club.address %></li>
+          <li><strong>Meeting time:</strong> <%= club.meeting_time %></li>
+          <li><strong>Age group:</strong> <%= club.age_group %></li>
+          <li><strong>Contact email:</strong> <a href="mailto:<%= club.contact_email %>"><%= club.contact_email %></a></li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h2>Contact this club</h2>
+        <% if (currentUser) { %>
+          <form action="/clubs/<%= club.id %>/contact" method="POST" class="stack-form">
+            <label>
+              <span>Your message</span>
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Tell the club organiser why you are interested or ask a short question."
+                required
+              ></textarea>
+            </label>
+            <button type="submit" class="button">Send interest request</button>
+          </form>
+        <% } else { %>
+          <p>You need an account to send a contact request to this club.</p>
+          <a href="/auth" class="button">Login / Register</a>
+        <% } %>
+      </article>
+
+      <article class="panel">
+        <h2><%= existingReview ? 'Update your review' : 'Leave a review' %></h2>
+        <% if (currentUser) { %>
+          <form action="/clubs/<%= club.id %>/reviews" method="POST" class="stack-form">
+            <label>
+              <span>Rating</span>
+              <select name="rating" required>
+                <option value="">Choose a rating</option>
+                <% for (let rating = 1; rating <= 5; rating += 1) { %>
+                  <option value="<%= rating %>" <%= existingReview && existingReview.rating === rating ? 'selected' : '' %>>
+                    <%= rating %> / 5
+                  </option>
+                <% } %>
+              </select>
+            </label>
+
+            <label>
+              <span>Comment</span>
+              <textarea
+                name="comment"
+                rows="5"
+                placeholder="Share what the atmosphere, organisation, or sessions are like."
+                required
+              ><%= existingReview ? existingReview.comment : '' %></textarea>
+            </label>
+
+            <button type="submit" class="button">Save review</button>
+          </form>
+        <% } else { %>
+          <p>You need an account to leave a review.</p>
+          <a href="/auth" class="button">Login / Register</a>
+        <% } %>
+      </article>
+
+      <article class="panel">
+        <h2>Recent reviews</h2>
+        <% if (reviews.length) { %>
+          <div class="review-list">
+            <% reviews.forEach((review) => { %>
+              <article class="review-card">
+                <div class="review-header">
+                  <strong><%= review.reviewer_name %></strong>
+                  <span><%= review.rating %>/5</span>
+                </div>
+                <p><%= review.comment %></p>
+                <small>Updated <%= formatDate(review.updated_at) %></small>
+              </article>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <p>No reviews yet.</p>
+        <% } %>
+      </article>
+    </div>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>

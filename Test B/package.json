@@ -1,0 +1,30 @@
+{
+  "name": "local-social-clubs-finder",
+  "version": "1.0.0",
+  "description": "Compact full-stack web app for finding local social clubs and community groups.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "seed": "node scripts/seed.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "sqlite",
+    "sessions"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.8.0",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2"
+  }
+}

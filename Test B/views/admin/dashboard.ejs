@@ -1,0 +1,94 @@
+<%- include("../partials/head", { title: "Admin Dashboard" }) %>
+<%- include("../partials/header") %>
+
+<section class="section-heading">
+  <div>
+    <p class="eyebrow">Admin</p>
+    <h1>Manage clubs and contact requests</h1>
+    <p>Create, edit, and remove club listings, then review interest messages submitted by users.</p>
+  </div>
+  <a class="button-link" href="/admin/clubs/new">Add new club</a>
+</section>
+
+<section class="panel">
+  <div class="section-heading">
+    <h2>Club listings</h2>
+    <p><%= clubs.length %> club(s) currently stored in the database.</p>
+  </div>
+
+  <% if (!clubs.length) { %>
+    <div class="empty-state">
+      <p>No club listings yet.</p>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Reviews</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% clubs.forEach((club) => { %>
+            <tr>
+              <td><a href="/clubs/<%= club.id %>"><%= club.name %></a></td>
+              <td><%= club.location %></td>
+              <td><%= club.category %></td>
+              <td>
+                <% if (club.average_rating) { %>
+                  <%= club.average_rating %>/5 (<%= club.review_count %>)
+                <% } else { %>
+                  No reviews
+                <% } %>
+              </td>
+              <td>
+                <div class="button-row">
+                  <a class="secondary-link" href="/admin/clubs/<%= club.id %>/edit">Edit</a>
+                  <form class="inline-form" action="/admin/clubs/<%= club.id %>/delete" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <button class="danger-button" type="submit">Delete</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</section>
+
+<section class="panel">
+  <div class="section-heading">
+    <h2>Contact submissions</h2>
+    <p>Interest messages from logged-in users.</p>
+  </div>
+
+  <% if (!contactRequests.length) { %>
+    <div class="empty-state">
+      <p>No contact submissions yet.</p>
+    </div>
+  <% } else { %>
+    <div class="request-list">
+      <% contactRequests.forEach((request) => { %>
+        <article class="request-card">
+          <div class="request-top">
+            <div>
+              <strong><a href="/clubs/<%= request.club_id %>"><%= request.club_name %></a></strong>
+              <p><%= request.user_name %> • <a href="mailto:<%= request.user_email %>"><%= request.user_email %></a></p>
+            </div>
+            <small><%= new Date(request.created_at).toLocaleString("en-IE") %></small>
+          </div>
+          <p><%= request.message %></p>
+          <p><strong>Preferred contact:</strong> <%= request.preferred_contact %></p>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include("../partials/footer") %>

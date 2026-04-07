@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">LS</span>
+      <span>Local Social Clubs Finder</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a>
+      <a href="/clubs" class="<%= currentPath.startsWith('/clubs') ? 'active' : '' %>">Browse Clubs</a>
+      <% if (isAdmin) { %>
+        <a href="/admin" class="<%= currentPath.startsWith('/admin') ? 'active' : '' %>">Admin</a>
+      <% } %>
+    </nav>
+
+    <div class="auth-actions">
+      <% if (currentUser) { %>
+        <span class="user-chip"><%= currentUser.name %></span>
+        <form action="/logout" method="POST">
+          <button type="submit" class="button button-secondary">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/auth" class="button button-secondary">Login / Register</a>
+      <% } %>
+    </div>
+  </div>
+</header>
+
+<% if (flash) { %>
+  <div class="container">
+    <div class="flash flash-<%= flash.type %>"><%= flash.message %></div>
+  </div>
+<% } %>

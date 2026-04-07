@@ -1,0 +1,21 @@
+{
+  "name": "local-social-clubs-finder",
+  "version": "1.0.0",
+  "description": "Compact full-stack app for discovering local social clubs and community groups.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "seed": "node --no-warnings scripts/seed.js",
+    "start": "node --no-warnings server.js",
+    "dev": "node --no-warnings --watch server.js",
+    "smoke": "node --no-warnings scripts/smoke-test.js"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
+  }
+}

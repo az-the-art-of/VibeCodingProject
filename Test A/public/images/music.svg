@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Music club</title>
+  <desc id="desc">Illustrated community choir banner.</desc>
+  <rect width="800" height="500" fill="#e4efe9"/>
+  <path d="M190 360V140l250-36v220c0 38-33 66-80 66s-80-28-80-66 33-66 80-66c13 0 25 2 36 6V194l-162 24v142c0 38-33 66-80 66s-80-28-80-66 33-66 80-66c13 0 25 2 36 6z" fill="#295c55"/>
+  <text x="88" y="96" font-family="Georgia, serif" font-size="42" fill="#1f4741">Community Choir</text>
+</svg>

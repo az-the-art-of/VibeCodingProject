@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Creative club</title>
+  <desc id="desc">Illustrated makers guild banner.</desc>
+  <rect width="800" height="500" fill="#f6eee4"/>
+  <path d="M120 360l120-170 124 82 112-150 164 238H120z" fill="#c57f39"/>
+  <circle cx="256" cy="214" r="30" fill="#fffdfa"/>
+  <circle cx="418" cy="184" r="26" fill="#fffdfa"/>
+  <text x="88" y="96" font-family="Georgia, serif" font-size="42" fill="#584938">Makers Guild</text>
+</svg>

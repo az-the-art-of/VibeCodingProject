@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Technology club</title>
+  <desc id="desc">Illustrated technology meetup banner.</desc>
+  <rect width="800" height="500" fill="#e2ecef"/>
+  <rect x="160" y="120" width="480" height="260" rx="24" fill="#1f4741"/>
+  <rect x="200" y="160" width="400" height="180" rx="12" fill="#d8ebe6"/>
+  <path d="M320 390h160l22 40H298z" fill="#1f4741"/>
+  <path d="M260 242h280M260 290h180" stroke="#295c55" stroke-width="18" stroke-linecap="round"/>
+  <text x="80" y="96" font-family="Georgia, serif" font-size="42" fill="#1f4741">Tech Meetup</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Language exchange</title>
+  <desc id="desc">Illustrated language exchange banner.</desc>
+  <rect width="800" height="500" fill="#efe6d9"/>
+  <path d="M170 154h210c34 0 62 28 62 62v72c0 34-28 62-62 62h-82l-58 48v-48h-70c-34 0-62-28-62-62v-72c0-34 28-62 62-62z" fill="#295c55"/>
+  <path d="M434 208h204c30 0 54 24 54 54v62c0 30-24 54-54 54h-60v42l-48-42h-96c-30 0-54-24-54-54v-62c0-30 24-54 54-54z" fill="#c57f39"/>
+  <text x="200" y="255" font-family="Georgia, serif" font-size="34" fill="#fffdfa">EN</text>
+  <text x="505" y="305" font-family="Georgia, serif" font-size="34" fill="#fffdfa">ES</text>
+  <text x="80" y="96" font-family="Georgia, serif" font-size="42" fill="#584938">Language Exchange</text>
+</svg>

@@ -1,0 +1,98 @@
+<form action="<%= action %>" method="GET" class="search-panel">
+  <div class="search-grid">
+    <label>
+      <span>Club name</span>
+      <input
+        type="text"
+        name="q"
+        placeholder="e.g. Riverside Running Club"
+        value="<%= filters.q || '' %>"
+      />
+    </label>
+
+    <label>
+      <span>Activity type</span>
+      <input
+        type="text"
+        name="activity"
+        placeholder="e.g. Yoga, Choir, Gardening"
+        value="<%= filters.activity || '' %>"
+      />
+    </label>
+
+    <label>
+      <span>Location</span>
+      <input
+        type="text"
+        name="location"
+        placeholder="e.g. Tallaght, Bray, Dublin 8"
+        value="<%= filters.location || '' %>"
+      />
+    </label>
+
+    <label>
+      <span>Category</span>
+      <select name="category">
+        <option value="">All categories</option>
+        <% filterOptions.categories.forEach((category) => { %>
+          <option value="<%= category %>" <%= filters.category === category ? 'selected' : '' %>>
+            <%= category %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      <span>Age group</span>
+      <select name="ageGroup">
+        <option value="">All age groups</option>
+        <% filterOptions.ageGroups.forEach((ageGroup) => { %>
+          <option value="<%= ageGroup %>" <%= filters.ageGroup === ageGroup ? 'selected' : '' %>>
+            <%= ageGroup %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      <span>Free / Paid</span>
+      <select name="cost">
+        <option value="">Any cost</option>
+        <% filterOptions.costTypes.forEach((costType) => { %>
+          <option value="<%= costType %>" <%= filters.cost === costType ? 'selected' : '' %>>
+            <%= costType %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      <span>Indoor / Outdoor</span>
+      <select name="setting">
+        <option value="">Any setting</option>
+        <% filterOptions.settingTypes.forEach((settingType) => { %>
+          <option value="<%= settingType %>" <%= filters.setting === settingType ? 'selected' : '' %>>
+            <%= settingType %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+
+    <label>
+      <span>Meeting frequency</span>
+      <select name="frequency">
+        <option value="">Any frequency</option>
+        <% filterOptions.meetingFrequencies.forEach((frequency) => { %>
+          <option value="<%= frequency %>" <%= filters.frequency === frequency ? 'selected' : '' %>>
+            <%= frequency %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+  </div>
+
+  <div class="search-actions">
+    <button type="submit" class="button">Search clubs</button>
+    <a href="<%= action %>" class="button button-secondary">Reset filters</a>
+  </div>
+</form>

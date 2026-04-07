@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Board game club</title>
+  <desc id="desc">Illustrated board game social banner.</desc>
+  <rect width="800" height="500" fill="#f5ead9"/>
+  <rect x="140" y="130" width="520" height="260" rx="28" fill="#fffdfa" stroke="#d5c7b2" stroke-width="8"/>
+  <circle cx="260" cy="220" r="22" fill="#295c55"/>
+  <circle cx="360" cy="300" r="22" fill="#9a3e2f"/>
+  <circle cx="470" cy="220" r="22" fill="#c57f39"/>
+  <circle cx="560" cy="300" r="22" fill="#295c55"/>
+  <text x="88" y="96" font-family="Georgia, serif" font-size="42" fill="#584938">Board Game Social</text>
+</svg>

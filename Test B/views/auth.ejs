@@ -1,0 +1,68 @@
+<%- include("partials/head", { title: "Login and Register" }) %>
+<%- include("partials/header") %>
+
+<section class="section-heading">
+  <div>
+    <p class="eyebrow">Account access</p>
+    <h1>Login or create an account</h1>
+    <p>Authentication is session-based. Register to save favourites, contact clubs, and post reviews.</p>
+  </div>
+</section>
+
+<section class="auth-grid">
+  <div class="panel">
+    <h2>Create account</h2>
+
+    <% if (registerErrors.length) { %>
+      <div class="form-errors">
+        <% registerErrors.forEach((error) => { %>
+          <p><%= error %></p>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <form class="stack-form" action="/register" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>
+        Name
+        <input type="text" name="name" value="<%= registerValues.name %>" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" value="<%= registerValues.email %>" required />
+      </label>
+      <label>
+        Password
+        <input type="password" name="password" minlength="8" required />
+      </label>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h2>Login</h2>
+
+    <% if (loginErrors.length) { %>
+      <div class="form-errors">
+        <% loginErrors.forEach((error) => { %>
+          <p><%= error %></p>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <form class="stack-form" action="/login" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>
+        Email
+        <input type="email" name="email" value="<%= loginValues.email %>" required />
+      </label>
+      <label>
+        Password
+        <input type="password" name="password" required />
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</section>
+
+<%- include("partials/footer") %>

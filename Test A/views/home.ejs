@@ -1,0 +1,99 @@
+<%- include("partials/head", { title }) %>
+<%- include("partials/header") %>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Find community nearby</p>
+        <h1>Discover local social clubs, hobby groups, and welcoming community meetups.</h1>
+        <p class="hero-copy">
+          Search by club name, activity, or location, then narrow the list using practical filters like age group,
+          indoor or outdoor setting, and meeting frequency.
+        </p>
+
+        <div class="stat-grid">
+          <article class="stat-card">
+            <strong><%= stats.clubCount %></strong>
+            <span>Active club listings</span>
+          </article>
+          <article class="stat-card">
+            <strong><%= stats.locationCount %></strong>
+            <span>Locations covered</span>
+          </article>
+          <article class="stat-card">
+            <strong><%= stats.categoryCount %></strong>
+            <span>Categories available</span>
+          </article>
+        </div>
+      </div>
+
+      <div>
+        <h2>Search clubs</h2>
+        <%- include("partials/search-form", { action: "/clubs", filters, filterOptions }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-header">
+      <div>
+        <p class="eyebrow">Featured listings</p>
+        <h2>Start with a few active groups</h2>
+      </div>
+      <a href="/clubs" class="button button-secondary">View all clubs</a>
+    </div>
+
+    <div class="container card-grid">
+      <% featuredClubs.forEach((club) => { %>
+        <article class="club-card">
+          <img src="<%= club.image_url %>" alt="<%= club.name %>" class="club-card-image" />
+          <div class="club-card-body">
+            <div class="badge-row">
+              <span class="badge"><%= club.category %></span>
+              <span class="badge"><%= club.location %></span>
+            </div>
+            <h3><%= club.name %></h3>
+            <p><%= club.description %></p>
+            <ul class="meta-list">
+              <li><strong>Activity:</strong> <%= club.activity_type %></li>
+              <li><strong>When:</strong> <%= club.meeting_time %></li>
+              <li><strong>Cost:</strong> <%= club.cost_type %></li>
+            </ul>
+            <a href="/clubs/<%= club.id %>" class="button">View details</a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <% if (currentUser) { %>
+    <section class="section section-muted">
+      <div class="container section-header">
+        <div>
+          <p class="eyebrow">Saved by you</p>
+          <h2>Your favourites</h2>
+        </div>
+      </div>
+
+      <div class="container">
+        <% if (favouriteClubs.length) { %>
+          <div class="simple-list">
+            <% favouriteClubs.forEach((club) => { %>
+              <a href="/clubs/<%= club.id %>" class="simple-list-item">
+                <span><strong><%= club.name %></strong> in <%= club.location %></span>
+                <span><%= club.activity_type %></span>
+              </a>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="empty-state">
+            <p>You have not saved any favourites yet. Open a club and use the save button to keep track of it.</p>
+          </div>
+        <% } %>
+      </div>
+    </section>
+  <% } %>
+</main>
+
+<%- include("partials/footer") %>
