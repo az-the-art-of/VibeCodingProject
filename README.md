@@ -4,7 +4,8 @@
 -Test C: Security-template-guided prompt 
 
 
-z
+Each test took about 20 minutes to finish
+Said yes to each pop up
 
 
 
