@@ -1,0 +1,114 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/header") %>
+
+<main class="container section">
+  <section class="panel">
+    <p class="eyebrow">Admin</p>
+    <h1><%= heading %></h1>
+    <form action="<%= formAction %>" class="stack-form" method="post">
+      <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+
+      <div class="grid-form">
+        <label>
+          Club name
+          <input name="name" type="text" value="<%= formData.name %>" />
+          <% if (errors.name) { %><span class="field-error"><%= errors.name %></span><% } %>
+        </label>
+        <label>
+          Activity type
+          <input name="activity_type" type="text" value="<%= formData.activityType %>" />
+          <% if (errors.activityType) { %><span class="field-error"><%= errors.activityType %></span><% } %>
+        </label>
+        <label>
+          Category
+          <select name="category">
+            <option value="">Choose category</option>
+            <% filterOptions.categories.forEach((option) => { %>
+              <option value="<%= option %>" <%= formData.category === option ? "selected" : "" %>><%= option %></option>
+            <% }) %>
+          </select>
+          <% if (errors.category) { %><span class="field-error"><%= errors.category %></span><% } %>
+        </label>
+        <label>
+          Age group
+          <select name="age_group">
+            <option value="">Choose age group</option>
+            <% filterOptions.ageGroups.forEach((option) => { %>
+              <option value="<%= option %>" <%= formData.ageGroup === option ? "selected" : "" %>><%= option %></option>
+            <% }) %>
+          </select>
+          <% if (errors.ageGroup) { %><span class="field-error"><%= errors.ageGroup %></span><% } %>
+        </label>
+        <label>
+          Price type
+          <select name="price_type">
+            <option value="">Choose price</option>
+            <% filterOptions.priceTypes.forEach((option) => { %>
+              <option value="<%= option %>" <%= formData.priceType === option ? "selected" : "" %>><%= option %></option>
+            <% }) %>
+          </select>
+          <% if (errors.priceType) { %><span class="field-error"><%= errors.priceType %></span><% } %>
+        </label>
+        <label>
+          Venue type
+          <select name="venue_type">
+            <option value="">Choose venue</option>
+            <% filterOptions.venueTypes.forEach((option) => { %>
+              <option value="<%= option %>" <%= formData.venueType === option ? "selected" : "" %>><%= option %></option>
+            <% }) %>
+          </select>
+          <% if (errors.venueType) { %><span class="field-error"><%= errors.venueType %></span><% } %>
+        </label>
+        <label>
+          Meeting frequency
+          <select name="meeting_frequency">
+            <option value="">Choose frequency</option>
+            <% filterOptions.meetingFrequencies.forEach((option) => { %>
+              <option value="<%= option %>" <%= formData.meetingFrequency === option ? "selected" : "" %>><%= option %></option>
+            <% }) %>
+          </select>
+          <% if (errors.meetingFrequency) { %><span class="field-error"><%= errors.meetingFrequency %></span><% } %>
+        </label>
+        <label>
+          Location
+          <input name="location" type="text" value="<%= formData.location %>" />
+          <% if (errors.location) { %><span class="field-error"><%= errors.location %></span><% } %>
+        </label>
+        <label>
+          Meeting time
+          <input name="meeting_time" type="text" value="<%= formData.meetingTime %>" />
+          <% if (errors.meetingTime) { %><span class="field-error"><%= errors.meetingTime %></span><% } %>
+        </label>
+        <label>
+          Contact email
+          <input name="contact_email" type="email" value="<%= formData.contactEmail %>" />
+          <% if (errors.contactEmail) { %><span class="field-error"><%= errors.contactEmail %></span><% } %>
+        </label>
+        <label>
+          Image URL
+          <input name="image_url" type="text" value="<%= formData.imageUrl %>" />
+          <% if (errors.imageUrl) { %><span class="field-error"><%= errors.imageUrl %></span><% } %>
+        </label>
+      </div>
+
+      <label>
+        Address
+        <input name="address" type="text" value="<%= formData.address %>" />
+        <% if (errors.address) { %><span class="field-error"><%= errors.address %></span><% } %>
+      </label>
+
+      <label>
+        Description
+        <textarea name="description" rows="8"><%= formData.description %></textarea>
+        <% if (errors.description) { %><span class="field-error"><%= errors.description %></span><% } %>
+      </label>
+
+      <div class="actions">
+        <button class="button" type="submit"><%= submitLabel %></button>
+        <a class="button button-secondary" href="/admin">Cancel</a>
+      </div>
+    </form>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>

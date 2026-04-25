@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Learning club illustration</title>
+  <desc id="desc">Abstract notebooks and a lightbulb</desc>
+  <rect width="800" height="600" fill="#f6f1e7" />
+  <rect x="110" y="120" width="220" height="320" rx="26" fill="#0f766e" />
+  <rect x="150" y="155" width="150" height="250" rx="14" fill="#fff9ef" />
+  <rect x="470" y="150" width="220" height="300" rx="26" fill="#d97706" />
+  <rect x="505" y="185" width="150" height="230" rx="14" fill="#fff9ef" />
+  <circle cx="400" cy="240" r="72" fill="#f0c88b" />
+  <rect x="370" y="305" width="60" height="100" rx="20" fill="#5a6772" />
+  <path d="M380 420h40" stroke="#1f2933" stroke-width="16" stroke-linecap="round" />
+  <path d="M205 220h45M205 255h45M205 290h45" stroke="#0f766e" stroke-width="10" stroke-linecap="round" />
+  <path d="M560 240h45M560 275h45M560 310h45" stroke="#d97706" stroke-width="10" stroke-linecap="round" />
+</svg>

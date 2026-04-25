@@ -1,0 +1,49 @@
+<%- include("partials/head", { title }) %>
+<%- include("partials/header") %>
+
+<main class="container section auth-grid">
+  <section class="panel">
+    <p class="eyebrow">Login</p>
+    <h1>Welcome back</h1>
+    <form action="/login" class="stack-form" method="post">
+      <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+      <label>
+        Email
+        <input name="email" type="email" value="<%= loginValues.email %>" />
+        <% if (loginErrors.email) { %><span class="field-error"><%= loginErrors.email %></span><% } %>
+      </label>
+      <label>
+        Password
+        <input name="password" type="password" />
+        <% if (loginErrors.password) { %><span class="field-error"><%= loginErrors.password %></span><% } %>
+      </label>
+      <button class="button" type="submit">Login</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">Register</p>
+    <h2>Create an account</h2>
+    <form action="/register" class="stack-form" method="post">
+      <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+      <label>
+        Display name
+        <input name="display_name" type="text" value="<%= registerValues.displayName %>" />
+        <% if (registerErrors.displayName) { %><span class="field-error"><%= registerErrors.displayName %></span><% } %>
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" value="<%= registerValues.email %>" />
+        <% if (registerErrors.email) { %><span class="field-error"><%= registerErrors.email %></span><% } %>
+      </label>
+      <label>
+        Password
+        <input name="password" type="password" />
+        <% if (registerErrors.password) { %><span class="field-error"><%= registerErrors.password %></span><% } %>
+      </label>
+      <button class="button" type="submit">Create account</button>
+    </form>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

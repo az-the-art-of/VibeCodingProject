@@ -1,0 +1,13 @@
+<%- include("partials/head", { title }) %>
+<%- include("partials/header") %>
+
+<main class="container section">
+  <section class="empty-state">
+    <p class="eyebrow">Error <%= statusCode %></p>
+    <h1><%= title %></h1>
+    <p><%= message %></p>
+    <a class="button" href="/">Return home</a>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

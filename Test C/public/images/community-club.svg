@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Community club illustration</title>
+  <desc id="desc">Stylized people meeting outdoors</desc>
+  <rect width="800" height="600" fill="#f3efe6" />
+  <rect y="380" width="800" height="220" fill="#cbe5d8" />
+  <circle cx="160" cy="150" r="80" fill="#d97706" opacity="0.2" />
+  <circle cx="645" cy="130" r="90" fill="#0f766e" opacity="0.18" />
+  <circle cx="245" cy="305" r="70" fill="#f3b675" />
+  <circle cx="400" cy="260" r="72" fill="#9ad1cb" />
+  <circle cx="555" cy="310" r="68" fill="#f0c88b" />
+  <rect x="190" y="360" width="110" height="130" rx="40" fill="#115e59" />
+  <rect x="345" y="325" width="110" height="165" rx="40" fill="#d97706" />
+  <rect x="500" y="360" width="110" height="130" rx="40" fill="#5a6772" />
+  <path d="M120 520C220 470 320 470 420 520" stroke="#0f766e" stroke-width="20" fill="none" stroke-linecap="round" />
+  <path d="M380 520C470 470 575 470 680 520" stroke="#115e59" stroke-width="20" fill="none" stroke-linecap="round" />
+</svg>

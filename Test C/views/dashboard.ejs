@@ -1,0 +1,66 @@
+<%- include("partials/head", { title }) %>
+<%- include("partials/header") %>
+
+<main class="container section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h1>Your saved clubs and activity</h1>
+    </div>
+  </div>
+
+  <section class="two-column">
+    <div class="panel">
+      <h2>Favourite clubs</h2>
+      <% if (favouriteClubs.length === 0) { %>
+        <p class="muted">You have not saved any clubs yet.</p>
+      <% } %>
+      <div class="stack-list">
+        <% favouriteClubs.forEach((club) => { %>
+          <article class="compact-card">
+            <img alt="" class="compact-image" src="<%= club.image_url %>" />
+            <div>
+              <h3><a href="/clubs/<%= club.id %>"><%= club.name %></a></h3>
+              <p><%= club.activity_type %> • <%= club.location %></p>
+              <p class="muted">Saved <%= formatDate(club.created_at) %></p>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Contact requests</h2>
+      <% if (contactRequests.length === 0) { %>
+        <p class="muted">You have not sent any messages yet.</p>
+      <% } %>
+      <div class="stack-list">
+        <% contactRequests.forEach((request) => { %>
+          <article class="compact-entry">
+            <h3><a href="/clubs/<%= request.club_id %>"><%= request.club_name %></a></h3>
+            <p><%= request.message %></p>
+            <p class="muted"><%= formatDate(request.created_at) %></p>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Your reviews</h2>
+    <% if (reviews.length === 0) { %>
+      <p class="muted">You have not posted any reviews yet.</p>
+    <% } %>
+    <div class="stack-list">
+      <% reviews.forEach((review) => { %>
+        <article class="compact-entry">
+          <h3><a href="/clubs/<%= review.club_id %>"><%= review.club_name %></a></h3>
+          <p><strong><%= review.rating %>/5</strong> • <%= review.comment %></p>
+          <p class="muted"><%= formatDate(review.created_at) %></p>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

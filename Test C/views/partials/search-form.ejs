@@ -1,0 +1,64 @@
+<form action="/clubs" class="search-panel" method="get">
+  <div class="grid-form grid-form-wide">
+    <label>
+      Club name
+      <input name="name" type="text" value="<%= search.name %>" />
+    </label>
+    <label>
+      Activity type
+      <input name="activity_type" type="text" value="<%= search.activityType %>" />
+    </label>
+    <label>
+      Location
+      <input name="location" type="text" value="<%= search.location %>" />
+    </label>
+    <label>
+      Category
+      <select name="category">
+        <option value="">Any category</option>
+        <% filterOptions.categories.forEach((option) => { %>
+          <option value="<%= option %>" <%= search.category === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Age group
+      <select name="age_group">
+        <option value="">Any age group</option>
+        <% filterOptions.ageGroups.forEach((option) => { %>
+          <option value="<%= option %>" <%= search.ageGroup === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Free or paid
+      <select name="price_type">
+        <option value="">Any price</option>
+        <% filterOptions.priceTypes.forEach((option) => { %>
+          <option value="<%= option %>" <%= search.priceType === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Indoor or outdoor
+      <select name="venue_type">
+        <option value="">Any venue</option>
+        <% filterOptions.venueTypes.forEach((option) => { %>
+          <option value="<%= option %>" <%= search.venueType === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Meeting frequency
+      <select name="meeting_frequency">
+        <option value="">Any schedule</option>
+        <% filterOptions.meetingFrequencies.forEach((option) => { %>
+          <option value="<%= option %>" <%= search.meetingFrequency === option ? "selected" : "" %>><%= option %></option>
+        <% }) %>
+      </select>
+    </label>
+  </div>
+  <div class="actions">
+    <button class="button" type="submit">Search clubs</button>
+  </div>
+</form>

@@ -1,0 +1,125 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/header") %>
+
+<main class="container section">
+  <article class="detail-hero">
+    <img alt="" class="detail-image" src="<%= club.image_url %>" />
+    <div>
+      <p class="eyebrow"><%= club.category %> • <%= club.location %></p>
+      <h1><%= club.name %></h1>
+      <p class="lede"><%= club.description %></p>
+      <div class="badge-row">
+        <span class="badge"><%= club.activity_type %></span>
+        <span class="badge"><%= club.age_group %></span>
+        <span class="badge"><%= club.price_type %></span>
+        <span class="badge"><%= club.venue_type %></span>
+        <span class="badge"><%= club.meeting_frequency %></span>
+      </div>
+      <dl class="detail-list">
+        <div>
+          <dt>Meeting time</dt>
+          <dd><%= club.meeting_time %></dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd><%= club.address %></dd>
+        </div>
+        <div>
+          <dt>Contact email</dt>
+          <dd><a href="mailto:<%= club.contact_email %>"><%= club.contact_email %></a></dd>
+        </div>
+        <div>
+          <dt>Reviews</dt>
+          <dd><%= club.review_count %> total • <%= club.average_rating > 0 ? `${club.average_rating}/5 average` : "No ratings yet" %></dd>
+        </div>
+      </dl>
+
+      <% if (currentUser) { %>
+        <% if (club.is_favourite) { %>
+          <form action="/clubs/<%= club.id %>/unfavourite" class="inline-form" method="post">
+            <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+            <button class="button button-secondary" type="submit">Remove favourite</button>
+          </form>
+        <% } else { %>
+          <form action="/clubs/<%= club.id %>/favourite" class="inline-form" method="post">
+            <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+            <button class="button" type="submit">Save to favourites</button>
+          </form>
+        <% } %>
+      <% } else { %>
+        <p class="muted">Log in to save favourites, contact clubs, and leave reviews.</p>
+      <% } %>
+    </div>
+  </article>
+
+  <section class="two-column">
+    <div class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Reviews</p>
+          <h2>Member feedback</h2>
+        </div>
+      </div>
+
+      <% if (reviews.length === 0) { %>
+        <p class="muted">No reviews yet.</p>
+      <% } %>
+
+      <div class="review-list">
+        <% reviews.forEach((review) => { %>
+          <article class="review-card">
+            <div class="card-meta">
+              <strong><%= review.display_name %></strong>
+              <span><%= review.rating %>/5</span>
+              <span><%= formatDate(review.created_at) %></span>
+            </div>
+            <p><%= review.comment %></p>
+          </article>
+        <% }) %>
+      </div>
+
+      <% if (currentUser) { %>
+        <form action="/clubs/<%= club.id %>/reviews" class="stack-form" method="post">
+          <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+          <h3>Leave a review</h3>
+          <label>
+            Rating
+            <select name="rating">
+              <% for (let value = 5; value >= 1; value -= 1) { %>
+                <option value="<%= value %>"><%= value %></option>
+              <% } %>
+            </select>
+          </label>
+          <label>
+            Comment
+            <textarea name="comment" rows="5"></textarea>
+          </label>
+          <button class="button" type="submit">Post review</button>
+        </form>
+      <% } %>
+    </div>
+
+    <div class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Send an interest message</h2>
+        </div>
+      </div>
+      <% if (currentUser) { %>
+        <form action="/clubs/<%= club.id %>/contact" class="stack-form" method="post">
+          <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+          <label>
+            Message
+            <textarea name="message" rows="7"></textarea>
+          </label>
+          <button class="button" type="submit">Send message</button>
+        </form>
+      <% } else { %>
+        <p class="muted">Please log in to contact this club.</p>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include("../partials/footer") %>

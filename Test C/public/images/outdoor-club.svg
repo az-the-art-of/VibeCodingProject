@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Outdoor club illustration</title>
+  <desc id="desc">Mountains and trail scene</desc>
+  <rect width="800" height="600" fill="#e8f2ec" />
+  <rect y="390" width="800" height="210" fill="#bfdcc5" />
+  <circle cx="640" cy="120" r="70" fill="#f4c86a" />
+  <path d="M80 420L230 210L380 420Z" fill="#5a6772" />
+  <path d="M250 420L430 160L620 420Z" fill="#0f766e" />
+  <path d="M460 420L610 240L760 420Z" fill="#115e59" />
+  <path d="M330 515C400 430 495 430 575 515" stroke="#d97706" stroke-width="18" fill="none" stroke-linecap="round" />
+  <path d="M120 515C190 450 265 450 335 515" stroke="#1f2933" stroke-width="18" fill="none" stroke-linecap="round" />
+</svg>

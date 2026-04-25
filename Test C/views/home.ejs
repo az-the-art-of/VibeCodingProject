@@ -1,0 +1,49 @@
+<%- include("partials/head", { title }) %>
+<%- include("partials/header") %>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Discover your local community</p>
+        <h1>Find clubs, classes, and social groups near you.</h1>
+        <p class="lede">
+          Search by activity, neighbourhood, category, age group, and schedule to find the right local club.
+        </p>
+      </div>
+      <%- include("partials/search-form", { search }) %>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Featured clubs</p>
+        <h2>Fresh listings across Seattle and the Eastside</h2>
+      </div>
+      <a class="button button-secondary" href="/clubs">View all clubs</a>
+    </div>
+
+    <div class="card-grid">
+      <% featuredClubs.forEach((club) => { %>
+        <article class="card">
+          <img alt="" class="card-image" src="<%= club.image_url %>" />
+          <div class="card-body">
+            <div class="card-meta">
+              <span><%= club.category %></span>
+              <span><%= club.location %></span>
+            </div>
+            <h3><a href="/clubs/<%= club.id %>"><%= club.name %></a></h3>
+            <p><%= club.description %></p>
+            <div class="card-meta">
+              <span><%= club.meeting_time %></span>
+              <span><%= club.price_type %></span>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

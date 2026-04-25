@@ -1,0 +1,27 @@
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="/">Local Social Clubs Finder</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/clubs">Browse Clubs</a>
+      <% if (currentUser) { %>
+        <a href="/dashboard">Dashboard</a>
+        <% if (currentUser.role === "admin") { %>
+          <a href="/admin">Admin</a>
+        <% } %>
+        <form action="/logout" class="inline-form" method="post">
+          <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+          <button class="link-button" type="submit">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/auth">Login / Register</a>
+      <% } %>
+    </nav>
+  </div>
+</header>
+
+<% if (flash) { %>
+  <div class="container">
+    <div class="flash flash-<%= flash.type %>"><%= flash.message %></div>
+  </div>
+<% } %>
